@@ -1,4 +1,4 @@
-name: Rust Hypervisor Firmware Release
+name: Release Workflow
 on: [create]
 
 env:
