@@ -21,51 +21,9 @@ jobs:
       - name: Build
         run: make LDFLAGS="--static"
       - name: Create release
-        id: create_release
-        uses: actions/create-release@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
+          artifacts: "src/mkfs.fat,src/fsck.fat,src/fatlabel,src/testdevinfo"
+          tag: ${{ github.ref }}
           release_name: ${{ github.ref }}
           draft: true
-      - name: Upload testdevinfo for x86_64
-        id: upload-release-testdevinfo
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/testdevinfo
-          asset_name: testdevinfo
-          asset_content_type: application/octet-stream
-      - name: Upload fatlabel for x86_64
-        id: upload-release-fatlabel
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/fatlabel
-          asset_name: fatlabel
-          asset_content_type: application/octet-stream
-      - name: Upload fsck.fat for x86_64
-        id: upload-release-fsck-fat
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/fsck.fat
-          asset_name: fsck.fat
-          asset_content_type: application/octet-stream
-      - name: Upload mkfs.fat for x86_64
-        id: upload-release-mkfs-fat
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: src/mkfs.fat
-          asset_name: mkfs.fat
-          asset_content_type: application/octet-stream
