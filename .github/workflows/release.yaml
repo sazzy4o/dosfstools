@@ -50,7 +50,7 @@ jobs:
           asset_name: fatlabel
           asset_content_type: application/octet-stream
       - name: Upload fsck.fat for x86_64
-        id: upload-release-fsck.fat
+        id: upload-release-fsck-fat
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +60,7 @@ jobs:
           asset_name: fsck.fat
           asset_content_type: application/octet-stream
       - name: Upload mkfs.fat for x86_64
-        id: upload-release-mkfs.fat
+        id: upload-release-mkfs-fat
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
