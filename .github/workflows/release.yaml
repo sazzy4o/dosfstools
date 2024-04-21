@@ -25,5 +25,5 @@ jobs:
         with:
           artifacts: "src/mkfs.fat,src/fsck.fat,src/fatlabel,src/testdevinfo"
           tag: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          name: ${{ github.ref }}
           draft: true
